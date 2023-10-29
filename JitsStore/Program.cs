@@ -1,11 +1,15 @@
 global using JitsStore.Models;
 global using Microsoft.AspNetCore.Mvc;
 global using System.Diagnostics;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<JITS_STORE>(options =>
+    options.UseSqlServer(builder.Configuration
+    .GetConnectionString("JitsStoreConnectString")));
 
 var app = builder.Build();
 

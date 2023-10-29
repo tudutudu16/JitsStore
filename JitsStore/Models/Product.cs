@@ -21,7 +21,7 @@ public partial class Product
 
     public byte? Status { get; set; }
 
-    public string? CategoryId { get; set; }
+    public Guid? CategoryId { get; set; }
 
     public string? SupplierId { get; set; }
 

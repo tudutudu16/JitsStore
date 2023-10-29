@@ -5,7 +5,7 @@ namespace JitsStore.Models;
 
 public partial class Category
 {
-    public string CategoryId { get; set; } = null!;
+    public Guid? CategoryId { get; set; } = null!;
 
     public string CategoryName { get; set; } = null!;
 
