@@ -1,4 +1,4 @@
-﻿namespace JitsStore.Models
+﻿namespace JitsStore.ViewModel
 {
 	public class UpdateCategoriesViewModel
 	{

@@ -15,7 +15,7 @@ public partial class Order
 
     public string? CustomerId { get; set; }
 
-    public string? EmployeeId { get; set; }
+    public Guid EmployeeId { get; set; }
 
     public string? ShipAddress { get; set; }
 

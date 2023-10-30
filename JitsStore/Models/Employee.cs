@@ -5,7 +5,7 @@ namespace JitsStore.Models;
 
 public partial class Employee
 {
-    public string EmployeeId { get; set; } = null!;
+    public Guid EmployeeId { get; set; }
 
     public string Name { get; set; } = null!;
 
