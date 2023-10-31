@@ -31,11 +31,34 @@ public partial class JITS_STORE : DbContext
 
     public virtual DbSet<Supplier> Suppliers { get; set; }
 
+    public virtual DbSet<User> Users { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer("Server=.;Database=JITS_STORE;User=sa;Password=12345;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+
+        modelBuilder.Entity<User>(entity =>
+        {
+            entity.ToTable("Users");
+
+            entity.Property(e => e.Id)
+                .HasMaxLength(6)
+                .IsUnicode(false)
+                .IsFixedLength()
+                .HasColumnName("USER_ID");
+            entity.Property(e => e.UserName)
+                .HasMaxLength(20)
+                .HasColumnName("USER_NAME");
+            entity.Property(e => e.Email)
+                .HasMaxLength(20)
+                .HasColumnName("Email");
+            entity.Property(e => e.Password)
+    .HasMaxLength(20)
+    .HasColumnName("Password");
+        });
+
         modelBuilder.Entity<Category>(entity =>
         {
             entity.ToTable("CATEGORIES");
