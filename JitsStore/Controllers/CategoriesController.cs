@@ -1,4 +1,5 @@
-﻿using JitsStore.ViewModel.Categories;
+﻿using JitsStore.Services;
+using JitsStore.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
