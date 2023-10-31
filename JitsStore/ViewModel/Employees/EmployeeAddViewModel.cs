@@ -1,4 +1,4 @@
-﻿namespace JitsStore.ViewModel
+﻿namespace JitsStore.ViewModel.Employees
 {
     public class EmployeeAddViewModel
     {

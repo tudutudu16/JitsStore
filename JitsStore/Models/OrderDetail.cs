@@ -7,7 +7,7 @@ public partial class OrderDetail
 {
     public string OrderId { get; set; } = null!;
 
-    public string ProductId { get; set; } = null!;
+    public Guid ProductId { get; set; }
 
     public decimal Price { get; set; }
 

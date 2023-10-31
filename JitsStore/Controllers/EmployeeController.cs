@@ -1,5 +1,5 @@
 ﻿using JitsStore.Models;
-using JitsStore.ViewModel;
+using JitsStore.ViewModel.Employees;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
@@ -18,7 +18,7 @@ namespace JitsStore.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var categorires = await jITSSTORE.Employees.ToListAsync();
+            var categorires = await jITSSTORE.Employee.ToListAsync();
             return View(categorires);
         }
 
@@ -46,15 +46,15 @@ namespace JitsStore.Controllers
                 Status = addEmployeeRequest.Status,
             };
 
-            await jITSSTORE.Employees.AddAsync(employee);
+            await jITSSTORE.Employee.AddAsync(employee);
             await jITSSTORE.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
         [HttpGet]
-        public async Task<IActionResult> View(Guid id)
+        public async Task<IActionResult> Update(Guid id)
         {
-            var employee = await jITSSTORE.Employees.FirstOrDefaultAsync(cate => string.Equals(cate.EmployeeId, id));
+            var employee = await jITSSTORE.Employee.FirstOrDefaultAsync(cate => string.Equals(cate.EmployeeId, id));
 
             if (employee != null)
             {
@@ -73,16 +73,16 @@ namespace JitsStore.Controllers
                     Status = employee.Status,
                 };
 
-                return await Task.Run(() => View("View", viewModel));
+                return await Task.Run(() => View("Update", viewModel));
             }
 
             return RedirectToAction("Index");
         }
 
         [HttpPost]
-        public async Task<IActionResult> View(EmployeeUpdateViewModel model)
+        public async Task<IActionResult> Update(EmployeeUpdateViewModel model)
         {
-            var employee = await jITSSTORE.Employees.FindAsync(model.EmployeeId);
+            var employee = await jITSSTORE.Employee.FindAsync(model.EmployeeId);
 
             if (employee != null)
             {
@@ -108,11 +108,11 @@ namespace JitsStore.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(EmployeeUpdateViewModel model)
         {
-            var cate = await jITSSTORE.Employees.FindAsync(model.EmployeeId);
+            var cate = await jITSSTORE.Employee.FindAsync(model.EmployeeId);
 
             if (cate != null)
             {
-                jITSSTORE.Employees.Remove(cate);
+                jITSSTORE.Employee.Remove(cate);
                 await jITSSTORE.SaveChangesAsync();
 
                 return RedirectToAction("Index");

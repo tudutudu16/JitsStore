@@ -5,7 +5,7 @@ namespace JitsStore.Models;
 
 public partial class Product
 {
-    public string ProductId { get; set; } = null!;
+    public Guid ProductId { get; set; }
 
     public string? ProductName { get; set; }
 
@@ -23,7 +23,7 @@ public partial class Product
 
     public Guid CategoryId { get; set; }
 
-    public string? SupplierId { get; set; }
+    public Guid SupplierId { get; set; }
 
     public virtual Category? Category { get; set; }
 

@@ -13,7 +13,7 @@ public partial class Order
 
     public decimal? ShippingFee { get; set; }
 
-    public string? CustomerId { get; set; }
+    public Guid CustomerId { get; set; }
 
     public Guid EmployeeId { get; set; }
 

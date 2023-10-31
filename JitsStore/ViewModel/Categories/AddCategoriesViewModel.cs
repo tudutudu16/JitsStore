@@ -1,4 +1,4 @@
-﻿namespace JitsStore.ViewModel
+﻿namespace JitsStore.ViewModel.Categories
 {
     public class AddCategoriesViewModel
     {

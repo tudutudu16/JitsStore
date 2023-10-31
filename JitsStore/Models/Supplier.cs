@@ -5,7 +5,7 @@ namespace JitsStore.Models;
 
 public partial class Supplier
 {
-    public string SupplierId { get; set; } = null!;
+    public Guid SupplierId { get; set; }
 
     public string? CompanyName { get; set; }
 
