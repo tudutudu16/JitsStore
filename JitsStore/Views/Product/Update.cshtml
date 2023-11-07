@@ -1,0 +1,47 @@
+﻿@model JitsStore.ViewModel.ProductVM
+@{
+
+}
+
+<h1>Update</h1>
+<form method="post" action="Update" class="mt-5">
+    <div class="mb-3">
+        <label for="" class="form-label">Product Id</label>
+        <input type="text" class="form-control" asp-for="product.ProductId" readonly>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Product name</label>
+        <input type="text" class="form-control" asp-for="product.ProductName">
+    </div>
+
+    <div class="mb-3">
+        <label for="" class="form-label">Price</label>
+        <input type="text" class="form-control" asp-for="product.Price">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Unit</label>
+        <input type="text" class="form-control" asp-for="product.Unit">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Quantity of stock</label>
+        <input type="number" class="form-control" asp-for="product.QuantityOfStock">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">status</label>
+        <input type="text" class="form-control" asp-for="product.Status">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Category</label>
+        <select class="form-select" asp-items="Model.CategoriesSelectList" asp-for="product.CategoryId"></select>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Supplier</label>
+        <select class="form-select" asp-items="Model.SuppliersSelectList" asp-for="product.SupplierId"></select>
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+    <button type="submit" class="btn btn-danger"
+            asp-action="Delete"
+            asp-controller="Product">
+        Delete
+    </button>
+</form>

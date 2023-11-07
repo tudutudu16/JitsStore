@@ -1,6 +1,7 @@
 global using JitsStore.Models;
 global using Microsoft.AspNetCore.Mvc;
 global using System.Diagnostics;
+using JitsStore.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,7 +11,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<JITS_STORE>(options =>
     options.UseSqlServer(builder.Configuration
     .GetConnectionString("JitsStoreConnectString")));
-
+builder.Services.AddScoped<ProductServices>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
