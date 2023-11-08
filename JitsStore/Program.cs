@@ -12,6 +12,7 @@ builder.Services.AddDbContext<JITS_STORE>(options =>
     options.UseSqlServer(builder.Configuration
     .GetConnectionString("JitsStoreConnectString")));
 builder.Services.AddScoped<ProductServices>();
+builder.Services.AddScoped<OrderServices>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

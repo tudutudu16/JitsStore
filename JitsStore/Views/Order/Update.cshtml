@@ -1,0 +1,51 @@
+﻿@model JitsStore.ViewModel.OrderVM
+@{
+
+}
+
+<h1>Update Order</h1>
+<form method="post" action="Update" class="mt-5">
+    <div class="mb-3">
+        <label for="" class="form-label">OrderId</label>
+        <input type="text" class="form-control" asp-for="Order.OrderId" readonly>
+    </div>
+        <div class="mb-3">
+        <label for="" class="form-label">OrderDate</label>
+        <input type="text" class="form-control" asp-for="Order.OrderDate">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">ShippedDate</label>
+        <input type="text" class="form-control" asp-for="Order.ShippedDate">
+    </div>
+
+    <div class="mb-3">
+        <label for="" class="form-label">ShippingFee</label>
+        <input type="text" class="form-control" asp-for="Order.ShippingFee">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">ShipAddress</label>
+        <input type="text" class="form-control" asp-for="Order.ShipAddress">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Note</label>
+        <input type="number" class="form-control" asp-for="Order.Note">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Customer</label>
+        <select class="form-select" asp-items="Model.CustomerDDL" asp-for="Order.CustomerId"></select>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Employee</label>
+        <select class="form-select" asp-items="Model.EmployeeDDL" asp-for="Order.EmployeeId"></select>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Shipper</label>
+        <select class="form-select" asp-items="Model.ShipperDDL" asp-for="Order.ShipperId"></select>
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+    <button type="submit" class="btn btn-danger"
+            asp-action="Delete"
+            asp-controller="Order">
+        Delete
+    </button>
+</form>

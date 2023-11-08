@@ -22,29 +22,17 @@ namespace JitsStore.Controllers
         }
 
         [HttpGet]
-        public IActionResult Add()
+        public async Task<IActionResult> Add()
         {
-            return View();
+            ProductVM productVM = await productServices.GetDDL();
+
+            return await Task.Run(() => View("Create", productVM));
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(ProductAddViewModel productVM)
+        public async Task<IActionResult> Create(ProductVM productVM)
         {
-            var product = new Product()
-            {
-                ProductId = Guid.NewGuid(),
-                ProductName = productVM.ProductName,
-                Price = productVM.Price,
-                Unit = productVM.Unit,
-                QuantityOfStock = productVM.QuantityOfStock,
-                QuantityOfOrder = productVM.QuantityOfOrder,
-                Picture = productVM.Picture,
-                Status = productVM.Status,
-                CategoryId = productVM.CategoryId,
-                SupplierId = productVM.SupplierId
-            };
-
-            await productServices.AddAsync(product);
+            await productServices.AddAsync(productVM.Product);
             return RedirectToAction("Index");
         }
 
@@ -53,7 +41,7 @@ namespace JitsStore.Controllers
         {
             var productVM = await productServices.GetById(id);
 
-            if (productVM.product != null)
+            if (productVM.Product != null)
             {
                 return await Task.Run(() => View("Update", productVM));
             }
@@ -64,7 +52,7 @@ namespace JitsStore.Controllers
         [HttpPost]
         public async Task<IActionResult> View(ProductVM productVM)
         {
-            productServices.Update(productVM.product);
+            productServices.Update(productVM.Product);
 
             return RedirectToAction("Index");
         }
@@ -72,9 +60,9 @@ namespace JitsStore.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(ProductVM productVM)
         {
-            if (productVM.product != null)
+            if (productVM.Product != null)
             {
-                productServices.Delete(productVM.product.ProductId);
+                productServices.Delete(productVM.Product.ProductId);
             }
 
             return RedirectToAction("Index");

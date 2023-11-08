@@ -17,44 +17,89 @@ namespace JitsStore.Services
             _context.SaveChanges();
         }
 
-        public async Task<IEnumerable<Order>> GetAll()
+        public async Task<IEnumerable<OrderViewVM>> GetAll()
         {
-            var result = _context.Orders.ToList();
+            var result = _context.Orders.Select(x => new OrderViewVM
+            {
+                OrderId = x.OrderId.ToString(),
+                OrderDate = x.OrderDate,
+                ShippedDate = x.ShippedDate,
+                ShipAddress = x.ShipAddress,
+                CustomerName = _context.Customers.Where(x => x.CustomerId.Equals(x.CustomerId)).Select(x => x.CustomerName).FirstOrDefault(),
+                CustomerId = x.CustomerId,
+                EmployeeName = _context.Employee.Where(x => x.EmployeeId.Equals(x.EmployeeId)).Select(x => x.Name).FirstOrDefault(),
+                EmployeeId = x.EmployeeId,
+                ShipperName = _context.Shippers.Where(x => x.ShipperId.Equals(x.ShipperId)).Select(x => x.Name).FirstOrDefault(),
+                ShipperId = x.ShipperId,
+                Note = x.Note,
+            });
 
             return result;
         }
 
-        public async Task<ProductVM> GetById(Guid id)
+        public async Task<OrderVM> GetData(string id)
         {
-            var result = _context.Products.FirstOrDefault(x => x.ProductId == id);
-            ProductVM productVM = new ProductVM();
-            productVM.product = result;
-            productVM.SuppliersSelectList = _context.Suppliers.Select(x => new SelectListItem
+            Order order = _context.Orders.FirstOrDefault(x => x.OrderId.Equals(id));
+            OrderVM orderVM = new OrderVM();
+            orderVM.Order = order;
+            orderVM.CustomerDDL = _context.Customers.Select(x => new SelectListItem
             {
-                Text = x.CompanyName,
-                Value = x.SupplierId.ToString()
-            }).ToList();
-            productVM.CategoriesSelectList = _context.Categories.Select(x => new SelectListItem
-            {
-                Text = x.CategoryName,
-                Value = x.CategoryId.ToString()
+                Text = x.CustomerName,
+                Value = x.CustomerId.ToString()
             }).ToList();
 
-            return productVM;
+            orderVM.EmployeeDDL = _context.Employee.Select(x => new SelectListItem
+            {
+                Text = x.Name,
+                Value = x.EmployeeId.ToString()
+            }).ToList();
+
+            orderVM.ShipperDDL = _context.Shippers.Select(x => new SelectListItem
+            {
+                Text = x.Name,
+                Value = x.ShipperId.ToString()
+            }).ToList();
+
+            return orderVM;
         }
 
-        public int Update(Product product)
+        public async Task<OrderVM> GetDLL()
         {
-            _context.Products.Update(product);
+            OrderVM orderVM = new OrderVM();
+            orderVM.Order = new Order();
+            orderVM.CustomerDDL = _context.Customers.Select(x => new SelectListItem
+            {
+                Text = x.CustomerName,
+                Value = x.CustomerId.ToString()
+            }).ToList();
+
+            orderVM.EmployeeDDL = _context.Employee.Select(x => new SelectListItem
+            {
+                Text = x.Name,
+                Value = x.EmployeeId.ToString()
+            }).ToList();
+
+            orderVM.ShipperDDL = _context.Shippers.Select(x => new SelectListItem
+            {
+                Text = x.Name,
+                Value = x.ShipperId.ToString()
+            }).ToList();
+
+            return orderVM;
+        }
+
+        public int Update(Order order)
+        {
+            _context.Orders.Update(order);
 
             return _context.SaveChanges();
         }
-        public int Delete(Guid productId)
+        public int Delete(string orderId)
         {
-            Product product = _context.Products.FirstOrDefault(x => x.ProductId.Equals(productId));
-            if(product != null)
+            Order order = _context.Orders.FirstOrDefault(x => x.OrderId.Equals(orderId));
+            if(order != null)
             {
-                _context.Products.Remove(product);
+                _context.Orders.Remove(order);
                 return _context.SaveChanges();
             }
 

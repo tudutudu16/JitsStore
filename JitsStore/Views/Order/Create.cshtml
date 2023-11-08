@@ -1,0 +1,42 @@
+﻿@model JitsStore.ViewModel.OrderVM
+
+@{
+}
+
+<h1>Add Order</h1>
+<form method="post" action="Create" class="mt-5">
+    <div class="mb-3">
+        <label for="" class="form-label">OrderId</label>
+        <input type="text" class="form-control" asp-for="Order.OrderId">
+    </div>
+
+    <div class="mb-3">
+        <label for="" class="form-label">OrderDate</label>
+        <input type="text" class="form-control" asp-for="Order.OrderDate">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">ShippingFee</label>
+        <input type="text" class="form-control" asp-for="Order.ShippingFee">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">ShipAddress</label>
+        <input type="text" class="form-control" asp-for="Order.ShipAddress">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Customer</label>
+        <select class="form-select" asp-items="Model.CustomerDDL" asp-for="Order.CustomerId"></select>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Employee</label>
+        <select class="form-select" asp-items="Model.EmployeeDDL" asp-for="Order.EmployeeId"></select>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Shipper</label>
+        <select class="form-select" asp-items="Model.ShipperDDL" asp-for="Order.ShipperId"></select>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Note</label>
+        <input type="text" class="form-control" asp-for="Order.Note">
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>

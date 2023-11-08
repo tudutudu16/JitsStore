@@ -28,7 +28,7 @@ namespace JitsStore.Services
         {
             var result = _context.Products.FirstOrDefault(x => x.ProductId == id);
             ProductVM productVM = new ProductVM();
-            productVM.product = result;
+            productVM.Product = result;
             productVM.SuppliersSelectList = _context.Suppliers.Select(x => new SelectListItem
             {
                 Text = x.CompanyName,
@@ -45,7 +45,7 @@ namespace JitsStore.Services
         public async Task<ProductVM> GetDDL()
         {
             ProductVM productVM = new ProductVM();
-            productVM.product = new Product();
+            productVM.Product = new Product();
             productVM.SuppliersSelectList = _context.Suppliers.Select(x => new SelectListItem
             {
                 Text = x.CompanyName,

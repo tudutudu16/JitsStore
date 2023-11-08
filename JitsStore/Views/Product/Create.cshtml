@@ -7,32 +7,32 @@
 <form method="post" action="Create" class="mt-5">
     <div class="mb-3">
         <label for="" class="form-label">Product name</label>
-        <input type="text" class="form-control" asp-for="product.ProductName">
+        <input type="text" class="form-control" asp-for="Product.ProductName">
     </div>
 
     <div class="mb-3">
         <label for="" class="form-label">Price</label>
-        <input type="text" class="form-control" asp-for="product.Price">
+        <input type="text" class="form-control" asp-for="Product.Price">
     </div>
     <div class="mb-3">
         <label for="" class="form-label">Unit</label>
-        <input type="text" class="form-control" asp-for="product.Unit">
+        <input type="text" class="form-control" asp-for="Product.Unit">
     </div>
     <div class="mb-3">
         <label for="" class="form-label">Quantity of stock</label>
-        <input type="number" class="form-control" asp-for="product.QuantityOfStock">
+        <input type="number" class="form-control" asp-for="Product.QuantityOfStock">
     </div>
     <div class="mb-3">
         <label for="" class="form-label">Status</label>
-        <input type="text" class="form-control" asp-for="product.Status">
+        <input type="text" class="form-control" asp-for="Product.Status">
     </div>
-        <div class="mb-3">
+    <div class="mb-3">
         <label for="" class="form-label">Category</label>
-        <select class="form-select" asp-items="Model.CategoriesSelectList" asp-for="product.CategoryId"></select>
+        <select class="form-select" asp-items="Model.CategoriesSelectList" asp-for="Product.CategoryId"></select>
     </div>
     <div class="mb-3">
         <label for="" class="form-label">Supplier</label>
-        <select class="form-select" asp-items="Model.SuppliersSelectList" asp-for="product.SupplierId"></select>
+        <select class="form-select" asp-items="Model.SuppliersSelectList" asp-for="Product.SupplierId"></select>
     </div>
 
     <button type="submit" class="btn btn-primary">Register</button>
