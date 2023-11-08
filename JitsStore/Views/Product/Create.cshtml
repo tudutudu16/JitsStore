@@ -1,34 +1,38 @@
-﻿@model JitsStore.ViewModel.Customers.CustomerAddViewModel
+﻿@model JitsStore.ViewModel.ProductVM
 
 @{
 }
 
-<h1>Add Customer</h1>
+<h1>Add Product</h1>
 <form method="post" action="Create" class="mt-5">
     <div class="mb-3">
-        <label for="" class="form-label">CustomerName</label>
-        <input type="text" class="form-control" asp-for="CustomerName">
+        <label for="" class="form-label">Product name</label>
+        <input type="text" class="form-control" asp-for="product.ProductName">
     </div>
 
     <div class="mb-3">
-        <label for="" class="form-label">Age</label>
-        <input type="text" class="form-control" asp-for="Age">
+        <label for="" class="form-label">Price</label>
+        <input type="text" class="form-control" asp-for="product.Price">
     </div>
     <div class="mb-3">
-        <label for="" class="form-label">Address</label>
-        <input type="text" class="form-control" asp-for="Address">
+        <label for="" class="form-label">Unit</label>
+        <input type="text" class="form-control" asp-for="product.Unit">
     </div>
     <div class="mb-3">
-        <label for="" class="form-label">Sex</label>
-        <input type="number" class="form-control" asp-for="Sex">
+        <label for="" class="form-label">Quantity of stock</label>
+        <input type="number" class="form-control" asp-for="product.QuantityOfStock">
     </div>
     <div class="mb-3">
-        <label for="" class="form-label">Email</label>
-        <input type="text" class="form-control" asp-for="Email">
+        <label for="" class="form-label">Status</label>
+        <input type="text" class="form-control" asp-for="product.Status">
+    </div>
+        <div class="mb-3">
+        <label for="" class="form-label">Category</label>
+        <select class="form-select" asp-items="Model.CategoriesSelectList" asp-for="product.CategoryId"></select>
     </div>
     <div class="mb-3">
-        <label for="" class="form-label">Phone</label>
-        <input type="text" class="form-control" asp-for="Phone">
+        <label for="" class="form-label">Supplier</label>
+        <select class="form-select" asp-items="Model.SuppliersSelectList" asp-for="product.SupplierId"></select>
     </div>
 
     <button type="submit" class="btn btn-primary">Register</button>

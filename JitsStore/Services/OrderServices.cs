@@ -3,23 +3,23 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace JitsStore.Services
 {
-    public class ProductServices
+    public class OrderServices
     {
         private readonly JITS_STORE _context;
 
-        public ProductServices(JITS_STORE context)
+        public OrderServices(JITS_STORE context)
         {
             _context = context;
         }
-        public async Task AddAsync(Product product)
+        public async Task AddAsync(Order order)
         {
-            _context.Products.Add(product);
+            _context.Orders.Add(order);
             _context.SaveChanges();
         }
 
-        public async Task<IEnumerable<Product>> GetAll()
+        public async Task<IEnumerable<Order>> GetAll()
         {
-            var result = _context.Products.ToList();
+            var result = _context.Orders.ToList();
 
             return result;
         }
@@ -29,23 +29,6 @@ namespace JitsStore.Services
             var result = _context.Products.FirstOrDefault(x => x.ProductId == id);
             ProductVM productVM = new ProductVM();
             productVM.product = result;
-            productVM.SuppliersSelectList = _context.Suppliers.Select(x => new SelectListItem
-            {
-                Text = x.CompanyName,
-                Value = x.SupplierId.ToString()
-            }).ToList();
-            productVM.CategoriesSelectList = _context.Categories.Select(x => new SelectListItem
-            {
-                Text = x.CategoryName,
-                Value = x.CategoryId.ToString()
-            }).ToList();
-
-            return productVM;
-        }
-        public async Task<ProductVM> GetDDL()
-        {
-            ProductVM productVM = new ProductVM();
-            productVM.product = new Product();
             productVM.SuppliersSelectList = _context.Suppliers.Select(x => new SelectListItem
             {
                 Text = x.CompanyName,
@@ -76,7 +59,6 @@ namespace JitsStore.Services
             }
 
             return 0;
-
         }
     }
 }

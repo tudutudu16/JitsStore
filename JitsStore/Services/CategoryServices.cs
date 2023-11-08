@@ -1,4 +1,6 @@
-﻿namespace JitsStore.Services
+﻿using JitsStore.ViewModel.Categories;
+
+namespace JitsStore.Services
 {
     public class CategoryServices
     {
