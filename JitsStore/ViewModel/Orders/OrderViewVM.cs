@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace JitsStore.ViewModel;
 
@@ -7,6 +6,9 @@ public class OrderViewVM
 {
     public string OrderId { get; set; } = null!;
 
+    public string Productname { get; set; }
+
+    public Guid ProductId { get; set; }
     public DateTime? OrderDate { get; set; }
 
     public DateTime? ShippedDate { get; set; }

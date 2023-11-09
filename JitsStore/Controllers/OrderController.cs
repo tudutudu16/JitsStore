@@ -49,6 +49,17 @@ namespace JitsStore.Controllers
         }
 
         [HttpPost]
+        public async Task<IActionResult> Update(OrderVM orderVM)
+        {
+            if (orderVM.Order != null)
+            {
+                _orderServices.Update(orderVM.Order, orderVM.OrderDetail);
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
         public async Task<IActionResult> Delete(OrderVM orderVM)
         {
             if (orderVM.Order != null)
@@ -58,33 +69,5 @@ namespace JitsStore.Controllers
 
             return RedirectToAction("Index");
         }
-
-
-        //[HttpPost]
-        //public async Task<IActionResult> Create(ViewModel.Order productVM)
-        //{
-        //    await _orderServices.AddAsync(productVM.product);
-
-        //    return RedirectToAction("Index");
-        //}
-
-        //[HttpPost]
-        //public async Task<IActionResult> View(ViewModel.Order productVM)
-        //{
-        //    _orderServices.Update(productVM.product);
-
-        //    return RedirectToAction("Index");
-        //}
-
-        //[HttpPost]
-        //public async Task<IActionResult> Delete(ViewModel.Order productVM)
-        //{
-        //    if (productVM.product != null)
-        //    {
-        //        _orderServices.Delete(productVM.product.ProductId);
-        //    }
-
-        //    return RedirectToAction("Index");
-        //}
     }
 }

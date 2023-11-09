@@ -9,7 +9,7 @@
         <label for="" class="form-label">OrderId</label>
         <input type="text" class="form-control" asp-for="Order.OrderId" readonly>
     </div>
-        <div class="mb-3">
+    <div class="mb-3">
         <label for="" class="form-label">OrderDate</label>
         <input type="text" class="form-control" asp-for="Order.OrderDate">
     </div>
@@ -41,6 +41,23 @@
     <div class="mb-3">
         <label for="" class="form-label">Shipper</label>
         <select class="form-select" asp-items="Model.ShipperDDL" asp-for="Order.ShipperId"></select>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Product</label>
+        <select class="form-select" asp-items="Model.ProductDDL" asp-for="OrderDetail.ProductId"></select>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Price</label>
+        <input type="number" class="form-control" asp-for="OrderDetail.Price">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Quantity</label>
+        <input type="number" class="form-control" asp-for="OrderDetail.Quantity">
+    </div>
+   
+    <div class="mb-3">
+        <label for="" class="form-label">Discount</label>
+        <input type="number" class="form-control" asp-for="OrderDetail.Discount">
     </div>
     <button type="submit" class="btn btn-primary">Update</button>
     <button type="submit" class="btn btn-danger"
